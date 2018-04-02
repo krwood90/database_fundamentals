@@ -1,0 +1,74 @@
+1.  List 5 aggregate functions and explain, in your own words, what they are for. Include a real world example for each. If you can’t list these from memory, do these flashcards until you can!
+        SUM     - this adds all the numbers within the table and limits together to get a total, this would be like going to the grocery store and getting a final cost.
+        AVG     - this adds all the numbers within the table and limits then divides them by however many gets added together, this would be used in seeing the average score of a test by students.
+        COUNT   - this would see how many of a given item is within the table or boundry, this would be useful in seeing how many items you would have in a grocery store log.
+        MIN     - this would see what the lowest number is whithin the given value, this could be used to see a log of who has worked the least amount of hours.
+        MAX     - this would see what the highest number is within the value, could be used to see what the most popular item being bought from a store.
+
+2.  Given this donations table, write queries and include the output for the following:
+        The total of all donations received in the past year.
+                SELECT SUM(amount)
+                FROM donations;
+        The total donations over time per donor (e.g. if Tanysha has donated 3 times with the amounts $25, $30, and $50, then the result would be | Tanysha | 105 |).
+                SELECT SUM(amount) AS average_amount, donor
+                FROM donations
+                GROUP BY donor;
+        The average donation per donor.
+                SELECT AVG(amount) AS average_amount, donor
+                FROM donations
+                GROUP BY donor;
+        The number of donations over $100.
+                SELECT COUNT(amount)
+                FROM donations
+                WHERE amount>100;
+        The largest donation received in a single instance from a single donor.
+                SELECT MAX(amount)
+                FROM donations;
+        The smallest donation received.
+                SELECT MIN(amount)
+                FROM donations;
+
+3.  How would you determine the display order of data returned by your SELECT statement?
+        You would use ORDER BY column_name ASC|DESC;
+
+4.  What is a real world situation where you would use OFFSET?
+        The reason why someone would use OFFSET is if they would want to findwhat someone would be so far down a list from a given possion in the order
+
+5.  Why is it important to use ORDER BY when limiting your results?
+        It is important to use the ORDER BY when limiting the result is because otherwise it would not show the top results for the limits and it would not give the results you would want.
+
+6.  What is the difference between HAVING and WHERE?
+        Using WHERE filters each row by the condition while HAVING eliminates the entire group with a single comparison.
+
+7.  Correct the following SELECT statement:
+        SELECT id, SUM (amount)
+        FROM payment
+        HAVING amount>200;
+8.  Follow the instructions for the scenarios below:
+        Given this [cats][http://sqlfiddle.com/#!17/bc4d2] table from the previous checkpoint, list all cats organized by intake date.
+                SELECT *
+                FROM cats
+                ORDER BY intake_date ASC;
+        Given this adoptions table, determine the 5 most recent adoptions to be featured for a social media promotion called "Happy Tails" which lists recent successful adoptions.
+                SELECT *
+                FROM cats
+                ORDER BY adoption_date ASC
+                LIMIT 5;
+        There is a potential adopter looking for an adult female cat. In the most efficient way possible, list all female cats 2 or more years old from the cats table.
+                SELECT id, name, age, gender
+                FROM cats 
+                GROUP BY id, name, age, gender
+                HAVING age>=2 AND gender='F';
+        From the donations table (from problem #2), find the top 5 donors with the highest cumulative donation amounts to be honored as “Platinum Donors”.
+                SELECT SUM(amount) AS average_amount, donor
+                FROM donations
+                GROUP BY donor
+                ORDER BY average_amount DESC
+                LIMIT 5;
+        From the donations table (from problem #2), find donors 6-15 with the next highest cumulative donation amounts to be honored as “Gold Donors”.
+                SELECT SUM(amount) AS average_amount, donor
+                FROM donations
+                GROUP BY donor
+                ORDER BY average_amount DESC
+                LIMIT 10 OFFSET 5;
+
