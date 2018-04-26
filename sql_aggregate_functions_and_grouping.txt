@@ -9,24 +9,82 @@
         The total of all donations received in the past year.
                 SELECT SUM(amount)
                 FROM donations;
+
+                sum
+                993
+
         The total donations over time per donor (e.g. if Tanysha has donated 3 times with the amounts $25, $30, and $50, then the result would be | Tanysha | 105 |).
                 SELECT SUM(amount) AS average_amount, donor
                 FROM donations
                 GROUP BY donor;
+
+                average_amount	donor
+                20	        Samwell
+                10	        Daario
+                75	        Brienne
+                120	        Tyrion
+                70	        Petyr
+                45	        Melisandre
+                25	        Bran
+                50	        Tormund
+                30	        Ygritte
+                7	        Gilly
+                25	        Jon
+                60	        Arya
+                20	        Theon
+                20	        Bronn
+                120	        Margaery
+                90	        Missandei
+                33	        Sansa
+                173	        Daenerys
+
         The average donation per donor.
                 SELECT AVG(amount) AS average_amount, donor
                 FROM donations
                 GROUP BY donor;
+
+                average_amount	donor
+                20	        Samwell
+                10	        Daario
+                75	        Brienne
+                40	        Tyrion
+                70	        Petyr
+                45	        Melisandre
+                25	        Bran
+                50	        Tormund
+                30	        Ygritte
+                7	        Gilly
+                25	        Jon
+                20	        Arya
+                10	        Theon
+                20	        Bronn
+                120	        Margaery
+                22.5	        Missandei
+                33	        Sansa
+                86.5	        Daenerys
+
         The number of donations over $100.
                 SELECT COUNT(amount)
                 FROM donations
                 WHERE amount>100;
+
+                count
+                2
+
         The largest donation received in a single instance from a single donor.
                 SELECT MAX(amount)
                 FROM donations;
+
+                max
+                120
+
         The smallest donation received.
                 SELECT MIN(amount)
                 FROM donations;
+
+                min
+                5
+
 
 3.  How would you determine the display order of data returned by your SELECT statement?
         You would use ORDER BY column_name ASC|DESC;
@@ -41,9 +99,10 @@
         Using WHERE filters each row by the condition while HAVING eliminates the entire group with a single comparison.
 
 7.  Correct the following SELECT statement:
-        SELECT id, SUM (amount)
-        FROM payment
-        HAVING amount>200;
+        SELECT donor, SUM (amount)
+        FROM donations
+        GROUP BY donor
+        HAVING SUM(amount)>200;
 8.  Follow the instructions for the scenarios below:
         Given this [cats][http://sqlfiddle.com/#!17/bc4d2] table from the previous checkpoint, list all cats organized by intake date.
                 SELECT *
