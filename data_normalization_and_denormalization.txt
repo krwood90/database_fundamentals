@@ -1,7 +1,7 @@
 1. In your own words, explain the benefits of normalization. Include a real-world scenario where normalization is necessary.
     By doing data normalization it decreases the redundancy of information within the tables and allows for less usage of space.
     Another factor in using data normalization is the ability to have to use fewer specifics when searching for the values within the 
-    multiple tables. Also when joining multiple taels it will make them more efficient and faster.
+    multiple tables. Also when joining multiple tabels it will make them more efficient and faster.
     An example of this situation is for schools who have thousands of students taken multiple classes throughout the years, and using 
     duplicate info like first and last name, email, phone-number, and whatnot would slow down the system instead they give a student an ID
     to use for the years and just have to reference that number instead.
@@ -11,9 +11,11 @@
     1NF     - Having multiple values within the same row and columnin the table, this would be like having a student having multiple classes taken in the 
             same row and column window, then change it to have seperate rows for the different classes with the same student.
     2NF     - Must be 1NF and all the non-key attributes cannot be dependent on a secondary value of the primary key, meaning no foreign keys values can be 
-            inside of a primary key value table.
-    3NF     - Must be 2NF and all transitive dependencies of the non- prime attributes can exist within the same table.
-    BCNF    - Must be 3NF and for every dependency of X -> Y, X must be the super key of that.
+            inside of a primary key value table. Like seperating a students personal information and the classes that they would be taking.
+    3NF     - Must be 2NF and all transitive dependencies of the non- prime attributes can exist within the same table. This would be seperating the students place 
+            they would be stating at like the name of the place and the address of the place.
+    BCNF    - Must be 3NF and for every dependency of X -> Y, X must be the super key of that. Seperating all of the students perosnal information,
+            like with phone and email as a table, relatives as another, address, and then classes.
 
 
 3. This student_records table contains students and their grades in different subjects. The schema is already in first normal form (1NF). Convert this schema to the third normal form (3NF) using the techniques you learned in this checkpoint.
